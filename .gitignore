@@ -1,2 +1,10 @@
 Referanslar/
 .DS_Store
+
+# Bu klasör başka (ilgisiz) projeler için paylaşılan bir çalışma dizini
+# olarak da kullanılıyor. Bu repo sadece Öznur Şaşmaz'ın sitesi içindir —
+# aşağıdakiler asla bu repoya girmemeli.
+ajans/
+demo/
+.claude/
+.agents/
