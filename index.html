@@ -132,6 +132,19 @@
   /* ---------- hero ---------- */
   .hero{padding:96px 0 84px; display:grid; grid-template-columns:1.4fr 1fr; gap:60px; align-items:center; border:none;}
   .hero .role{font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent-2); margin-bottom:22px; font-weight:600;}
+  .hero .role span{display:inline-block; transition:opacity .35s ease, transform .35s ease;}
+
+  /* ---------- custom cursor ---------- */
+  .cursor-dot{
+    position:fixed; top:0; left:0; width:20px; height:20px; border-radius:50%;
+    background:var(--accent-2); box-shadow:0 0 20px 5px var(--accent);
+    mix-blend-mode:difference; pointer-events:none; z-index:9999;
+    transform:translate(-50%,-50%); opacity:0;
+    transition:opacity .25s ease, width .25s ease, height .25s ease;
+  }
+  .cursor-dot.is-active{opacity:.85;}
+  .cursor-dot.is-big{width:40px; height:40px;}
+  @media (hover:none), (pointer:coarse){ .cursor-dot{display:none;} }
   .hero h1{
     font-family:var(--serif); font-weight:400;
     font-size:clamp(2.5rem, 1.3rem + 4.6vw, 4.3rem);
@@ -145,10 +158,25 @@
   .btn.ghost{background:none; color:var(--ink); border:1px solid var(--line);}
   .btn.ghost:hover{border-color:var(--accent); background:rgba(59,109,255,.08);}
 
-  .portrait{position:relative;}
-  .portrait img{width:100%; aspect-ratio:4/5; object-fit:cover; object-position:center top; border-radius:6px; background:var(--surface-2);}
-  .portrait::after{content:""; position:absolute; inset:-20px -20px 20px 20px; z-index:-1; border-radius:8px; background:linear-gradient(150deg, var(--accent), transparent 60%); opacity:.5;}
-  .portrait figcaption{position:absolute; bottom:16px; left:-16px; background:var(--surface); border:1px solid var(--line); padding:8px 14px; font-size:13px; color:var(--ink-soft); border-radius:3px;}
+  .portrait{position:relative; isolation:isolate;}
+  .portrait .glow-blob{
+    position:absolute; z-index:-1; left:-14%; top:-14%; width:128%; height:128%;
+    background:radial-gradient(circle at 50% 42%, var(--accent-2) 0%, var(--accent) 32%, var(--accent-deep) 55%, transparent 72%);
+    filter:blur(54px); opacity:.6; border-radius:50%;
+    animation:blobSpin 14s linear infinite;
+  }
+  @keyframes blobSpin{
+    0%{transform:rotate(0deg) scale(1);}
+    50%{transform:rotate(180deg) scale(1.06);}
+    100%{transform:rotate(360deg) scale(1);}
+  }
+  .portrait img{
+    width:100%; aspect-ratio:4/5; object-fit:cover; object-position:center top;
+    border-radius:6px; background:var(--surface-2); position:relative;
+    -webkit-mask-image:radial-gradient(ellipse 82% 88% at 50% 40%, #000 62%, transparent 100%);
+            mask-image:radial-gradient(ellipse 82% 88% at 50% 40%, #000 62%, transparent 100%);
+  }
+  .portrait figcaption{position:absolute; z-index:2; bottom:6px; left:-16px; background:var(--surface); border:1px solid var(--line); padding:8px 14px; font-size:13px; color:var(--ink-soft); border-radius:3px;}
 
   /* ---------- stat strip ---------- */
   .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:var(--line-soft); border:1px solid var(--line-soft); border-radius:6px; overflow:hidden; margin-top:64px;}
@@ -268,7 +296,7 @@
   <!-- ================= HERO ================= -->
   <section class="hero">
     <div>
-      <p class="role" data-i18n="hero.role">Girişimci &amp; Eğitmen</p>
+      <p class="role"><span id="roleText" data-i18n="hero.role">Girişimci &amp; Eğitmen</span></p>
       <h1 data-i18n-html="hero.title">Genç kadınların girişimcilik yolunu <em>daha kısa</em> yapıyorum.</h1>
       <p class="lede" data-i18n="hero.lede">M Strategy ve TÜGA – Türkiye Girişim Ağı kurucusu. Danışmanlık, eğitim, kitaplar ve sahne — hepsi üretmek isteyen kadınlara yol açmak için.</p>
       <div class="cta-row">
@@ -278,6 +306,7 @@
     </div>
     <!-- FOTO: portreyi assets/portrait.jpg olarak kaydet (kare foto da olur, üstten kırpılır). -->
     <figure class="portrait">
+      <div class="glow-blob" aria-hidden="true"></div>
       <img src="assets/portrait.jpg" alt="Öznur Şaşmaz portresi"
            onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='500'%3E%3Crect width='400' height='500' fill='%23141d44'/%3E%3Ctext x='200' y='250' font-size='15' fill='%237a85b8' text-anchor='middle' font-family='sans-serif'%3Eassets/portrait.jpg%3C/text%3E%3C/svg%3E&quot;;this.onerror=null;">
       <figcaption data-i18n="hero.caption">Bursa, 2026</figcaption>
@@ -514,6 +543,26 @@
 (function(){
   "use strict";
 
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+  /* ---- özel imleç (fare takibi) ---- */
+  if (!reduceMotion && !isTouch){
+    var dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    dot.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(dot);
+    document.addEventListener('mousemove', function(e){
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+      dot.classList.add('is-active');
+    }, {passive:true});
+    document.addEventListener('mouseleave', function(){ dot.classList.remove('is-active'); });
+    document.addEventListener('mouseover', function(e){
+      dot.classList.toggle('is-big', !!e.target.closest('a,button'));
+    });
+  }
+
   var btn = document.querySelector('.menu-btn');
   var nav = document.getElementById('nav');
   btn.addEventListener('click', function(){
@@ -644,6 +693,16 @@
   var lang = "tr";
   try { var s = localStorage.getItem('oz-lang'); if (s === 'en' || s === 'tr') lang = s; } catch(e){}
 
+  /* ---- dönen unvan satırı ---- */
+  var ROLES = [
+    ["Girişimci & Eğitmen","Entrepreneur & Educator"],
+    ["M Strategy Kurucusu","Founder, M Strategy"],
+    ["TÜGA – Türkiye Girişim Ağı Kurucusu","Founder, TÜGA"],
+    ["TEDx Konuşmacısı","TEDx Speaker"]
+  ];
+  var roleIndex = 0;
+  var roleEl = document.getElementById('roleText');
+
   function apply(){
     var i = lang === "en" ? 1 : 0;
     document.documentElement.lang = lang;
@@ -654,6 +713,20 @@
       var v = T[el.getAttribute('data-i18n-html')]; if (v) el.innerHTML = v[i];
     });
     document.getElementById('langBtn').innerHTML = lang === "en" ? 'TR / <b>EN</b>' : '<b>TR</b> / EN';
+    if (roleEl) roleEl.textContent = ROLES[roleIndex][i];
+  }
+
+  if (roleEl && !reduceMotion){
+    setInterval(function(){
+      roleIndex = (roleIndex + 1) % ROLES.length;
+      roleEl.style.opacity = '0';
+      roleEl.style.transform = 'translateY(4px)';
+      setTimeout(function(){
+        roleEl.textContent = ROLES[roleIndex][lang === "en" ? 1 : 0];
+        roleEl.style.opacity = '1';
+        roleEl.style.transform = 'none';
+      }, 350);
+    }, 3400);
   }
   document.getElementById('langBtn').addEventListener('click', function(){
     lang = lang === "en" ? "tr" : "en";
