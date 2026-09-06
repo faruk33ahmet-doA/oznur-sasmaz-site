@@ -12,7 +12,8 @@ göre cevap verirsin.
   https://app.notion.com/p/7c80366bbfc745118364f5b45c838066
 - `demo/<hafta>/` — hazırlanan demolar
 - `musteri/` — teslim edilen / devam eden müşteri işleri
-- `otomasyon/durum/` — sabah kontrol otomasyonunun bıraktığı özet (varsa)
+- `otomasyon/durum/` — sabah kontrol + WhatsApp ilk mesaj otomasyonlarının
+  bıraktığı özetler (`son-kontrol.md`, `whatsapp-son-gonderim.md` — varsa)
 - `pazarlama/` — hazır bekleyen içerikler (varsa)
 - `gelisim/kayitlar/` — açık geliştirme önerileri
 - `yapay-zeka-donusumu/` — sektör araştırmaları

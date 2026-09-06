@@ -29,7 +29,8 @@ işletmeyi bul → o daha talep etmeden ona özel demo hazırla → demoyu sat.*
 
 ```
 işletme bul → araştır → uygun olanları seç → demo hazırla → Notion'a işle
-→ Ahmet WhatsApp'tan ulaşsın → cevap yoksa 3 gün sonra telefon
+→ otomasyon ilk WhatsApp mesajını atar (`otomasyon/whatsapp-ilk-mesaj/`)
+→ cevap yoksa 3 gün sonra Ahmet telefonla arar
 → müşteri kabul → ÖN ÖDEME → son düzenlemeler → alan adı → canlı site → referans
 ```
 
@@ -90,8 +91,9 @@ flyteq son/                (git reposu: oznur-sasmaz-site — public)
 │   ├── ss.mjs                mobil + masaüstü tam sayfa ekran görüntüsü + yatay taşma raporu
 │   ├── YONLER.md             hangi işletmeye hangi tasarım yönü verildi (tekrar yasağı)
 │   └── sablon/               MEKANİK referansı — kopyalanacak görsel şablon DEĞİL
-├── otomasyon/             ← bilgisayardan bağımsız çalışan işler (GitHub Actions)
+├── otomasyon/             ← bilgisayardan bağımsız çalışan işler (Actions + Cowork)
 │   ├── notion-sabah-kontrol/ her sabah satış takibi (3 gün kuralı, geciken görev)
+│   ├── whatsapp-ilk-mesaj/   demo hazır olana ilk WhatsApp mesajını otomatik atar (Cowork)
 │   └── haftalik-demo/        haftalık otomatik demo ajanının TANIMI
 ├── demo/                  ← haftalık soğuk-satış demoları
 │   └── <YYYY-AA-GG>_<YYYY-AA-GG>/<isletme-slug>/
@@ -167,12 +169,19 @@ https://app.notion.com/p/7c80366bbfc745118364f5b45c838066
 ## Bilgisayar kapalıyken çalışan sistem (`otomasyon/`)
 
 Claude ve VS Code sürekli açık olmak zorunda değil. Basit tarih/kural işleri
-yapay zekâya bırakılmaz — GitHub Actions ile bulutta çalışır.
+yapay zekâya bırakılmaz — GitHub Actions ile bulutta çalışır. Chrome/karar
+gerektiren tekrarlı işler (WhatsApp ilk mesaj) Claude Cowork zamanlanmış
+göreviyle çalışır.
 
 - **`otomasyon/notion-sabah-kontrol/`** — her sabah çalışır. Kontrol: WhatsApp
   gönderilmiş mi + 3 gün geçmiş mi + cevap var mı + bugün aranmalı mı + geciken
   görev var mı. Gerekirse `Sonraki Aksiyon = Telefonla Ara`,
   `Sonraki Aksiyon Tarihi = bugün` yapar. Düz kod — Claude API kullanmaz.
+- **`otomasyon/whatsapp-ilk-mesaj/`** — demo `Demo Hazır` olan işletmelere
+  **ilk WhatsApp mesajını otomatik gönderir** (Claude Cowork zamanlanmış görev,
+  Chrome eklentisi + Notion). Günde en fazla 6, sabit şablon
+  (`mesaj-sablonu.md`), tek numaraya ömür boyu tek mesaj. Follow-up ve arama
+  otomatik DEĞİL — onu sabah kontrolü + Ahmet yapar.
 - **`otomasyon/haftalik-demo/`** — haftalık otomatik demo ajanının tanımı
   (Chat 2 pipeline'ı, publish YOK). Denetimi Chat 5'te.
 
@@ -215,6 +224,9 @@ Müşteri demolarından **ayrı** — FlyTeq'in kendi tanıtım sitesi.
 9. **Aynı anda tek işletme** (satış demo üretiminde). Biri bitip onay alınmadan
    sonrakine geçme.
 10. **Satış "Kazanıldı" = ön ödeme alındı.** Sözlü "tamam" satış değildir.
+11. **İlk WhatsApp mesajı otomatik** (`otomasyon/whatsapp-ilk-mesaj/`, sabit
+    şablon). Follow-up mesajı, telefon araması ve pazarlık **elle** — Ahmet yapar.
+    Ajan müşteriye serbest metin yazmaz.
 
 ---
 

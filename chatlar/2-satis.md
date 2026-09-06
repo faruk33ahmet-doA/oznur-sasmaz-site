@@ -18,7 +18,8 @@ Sistemin en güçlü kozu: müşteriye "demo yapayım mı" denmez — demo zaten
       ↓  Ahmet son bakış, "tamam"
                        → ayrı GitHub repo + Vercel prod link, Notion 'Demo Hazır'
       ↓  satış paketini Ahmet'e ver (aşağıda)
-   Ahmet WhatsApp gönderir → Notion'da işaretler → cevap yoksa 3 gün sonra telefon
+   otomasyon ilk WhatsApp mesajını atar (otomasyon/whatsapp-ilk-mesaj/)
+      ↓  cevap yoksa sabah kontrolü 3 gün sonra "Telefonla Ara" der → Ahmet arar
 ```
 
 ## Müşteri bulma — Bursa geneli
@@ -93,22 +94,27 @@ her seferinde `avoid-ai-design` + `frontend-design-pro` yükler.
 İşletme:        <ad>
 Sektör / Bölge: <sektör> · <ilçe>
 Uygunluk Puanı: <n>/100 — <neden seçildi, tek cümle>
-Demo:           https://<slug>.vercel.app
+Demo:           https://<slug>.netlify.app
 Telefon:        <numara>       WhatsApp: <wa.me linki>
 Kısa özet:      <2 cümle işletme özeti>
-
-Hazır ilk mesaj (WhatsApp, kısa):
-"<selam + işletmeye özel demo hazırladım + link + tek satır değer>"
 
 Sahada / aramada sorulacaklar: <arastirma.md listesi>
 ```
 
+İlk WhatsApp mesajını **otomasyon** atar — metni
+`otomasyon/whatsapp-ilk-mesaj/mesaj-sablonu.md` belirler (sabit şablon,
+sektöre göre tek değer cümlesi). Ahmet'e ayrıca mesaj taslağı yazma.
+
 ## Satış akışı
 
-- **İlk temas Ahmet'in.** Ana kanal WhatsApp, mesaj kısa. Temel avantaj:
-  "daha talep etmeden size özel demo hazırladık."
-- Ahmet WhatsApp gönderince Notion'da `WhatsApp Gönderildi` + tarih işaretler.
-- Cevap yoksa **3 gün sonra telefon.** Aramadan önce Ahmet'e kısa bilgi ver:
+- **İlk WhatsApp mesajı otomatik.** `Aşama = Demo Hazır` + `Demo URL` dolu +
+  telefon var olunca `otomasyon/whatsapp-ilk-mesaj/` sabit şablonla mesajı
+  gönderir, Notion'u `İlk Temas Yapıldı` yapar. Temel avantaj mesajda:
+  "siz talep etmeden size özel demo hazırladık." Sen bu adımı beklersin,
+  demoyu `Demo Hazır` yapıp satış paketini Ahmet'e verirsin — gönderimi
+  otomasyon üstlenir.
+- Cevap yoksa **3 gün sonra telefon** (sabah kontrolü `Telefonla Ara` der).
+  Aramadan önce Ahmet'e kısa bilgi ver:
   kimi arıyoruz · neden · demo linki · işletmenin güçlü noktası · görüşmenin
   hedefi. **Uzun konuşma metni üretme.**
 - **Sözlü "tamam" satış değildir.** Notion'da `Aşama = Kazanıldı` ancak

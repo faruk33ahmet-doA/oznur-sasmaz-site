@@ -43,5 +43,7 @@ NOTION_TOKEN=secret_xxx node otomasyon/notion-sabah-kontrol/kontrol.mjs --dry
 `Arandı` (checkbox) · `Yanıt Durumu` · `Sonraki Aksiyon` ·
 `Sonraki Aksiyon Tarihi` · `Aşama`
 
-Bu alanlar Notion'da mevcut. Ahmet WhatsApp gönderince `WhatsApp Gönderildi`'yi
-işaretler + `WhatsApp Gönderim Tarihi`'ni girer; gerisini otomasyon yapar.
+Bu alanlar Notion'da mevcut. `WhatsApp Gönderildi` + `WhatsApp Gönderim Tarihi`
+artık `otomasyon/whatsapp-ilk-mesaj/` tarafından otomatik işaretleniyor;
+bu script de 3 gün geçince `Telefonla Ara` diyor. Zincir uçtan uca otomatik —
+aramayı Ahmet yapar.
