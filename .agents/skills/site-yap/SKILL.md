@@ -93,7 +93,7 @@ cd "demo/<hafta>/<slug>/site"
 git init -b main && git add -A
 git commit -m "<İşletme adı> — demo site
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>"
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>"
 gh repo create <slug>-demo --private --source . --push
 ```
 
@@ -105,7 +105,7 @@ Vercel MCP:
 - Canlı URL'yi `curl` ile aç: 200 mü, içerik doğru mu, görseller geliyor mu,
   harita gerçekten çalışıyor mu (headless'ta boş görünür, canlıda kontrol et)
 
-Notion CRM: durum `demo-hazir`, demo URL, tarih.
+Notion: `Aşama = Demo Hazır`, `Demo Durumu = Hazır`, `Demo URL`, `Demo Tarihi`.
 
 ## 8. Teslim
 

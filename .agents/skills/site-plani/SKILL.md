@@ -16,7 +16,7 @@ demo/<hafta>/<slug>/
   plan.md
   site/assets/
 ```
-klasörlerini oluştur. `Notion CRM`'de durumu `arastiriliyor` yap.
+klasörlerini oluştur. Notion'da `Aşama = Demo Hazırlanıyor`, `Demo Durumu = Hazırlanıyor` yap.
 
 ## 1. Derin araştırma
 
@@ -166,7 +166,7 @@ alan adı önerisi · vercel proje adı · repo adı
 
 ## 5. Bitir
 
-`Notion CRM`'de durumu `plan-hazir` yap. Kullanıcıya sun:
+Notion'da `Demo Tarihi = bugün` yaz (Aşama `Demo Hazırlanıyor` kalır). Kullanıcıya sun:
 - 5–8 satırlık özet (konumlandırma, palet, bölümler, kaç görsel indirildi)
 - İndirilen görselleri `SendUserFile` ile gönder ki telefonundan bakabilsin
 - `arastirma.md`'deki "sahada sorulacak" listesi

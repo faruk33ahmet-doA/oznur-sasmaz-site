@@ -1,0 +1,33 @@
+name: Notion sabah kontrol
+
+on:
+  schedule:
+    # Her sabah 06:10 UTC = 09:10 Türkiye
+    - cron: "10 6 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  kontrol:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Sabah kontrolü çalıştır
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: node otomasyon/notion-sabah-kontrol/kontrol.mjs
+
+      - name: Özeti commit'le
+        run: |
+          git config user.name "flyteq-otomasyon"
+          git config user.email "otomasyon@flyteq.local"
+          git add otomasyon/durum/son-kontrol.md
+          git diff --staged --quiet || git commit -m "Sabah kontrol özeti $(date -u +%F)"
+          git push
