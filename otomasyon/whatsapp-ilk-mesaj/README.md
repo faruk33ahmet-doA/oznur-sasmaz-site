@@ -108,11 +108,27 @@ launchctl unload ~/Library/LaunchAgents/space.flyteq.whatsapp-ilk-mesaj.plist
   (Notion `WhatsApp Gönderildi` kontrolü).
 - Geçersiz numara: gönderilmez, `gonderildi.json` "atlandı"ya yazılır.
 
+## Gönderim doğrulama
+
+Script, gönderdikten sonra son giden mesajda demo linki var mı diye bakar
+(Chrome JS). Bunun çalışması için Chrome'da **View → Developer → "Allow
+JavaScript from Apple Events"** açık olmalı. Açık değilse gönderim yine kaydolur
+ama `gonderildi.json`'da `dogrulandi: false` + durum dosyasında
+"⚠ doğrulanmadı — telefonu kontrol et" yazar.
+
+## launchd izin notu
+
+İlk otomatik çalışmada macOS `osascript` için Erişilebilirlik izni isteyebilir
+(VS Code'a verilen izin launchd'ye geçmez). İstek çıkarsa onayla; kaçırırsan
+`/tmp/flyteq-whatsapp-ilk-mesaj.err`'e bak, gerekirse Sistem Ayarları →
+Erişilebilirlik'te `osascript`'i ekle ve `launchctl start
+space.flyteq.whatsapp-ilk-mesaj` ile tekrar tetikle.
+
 ## Bilinen sınır
 
-Script "WhatsApp'ta kayıtlı değil" ekranını göremez. Numara gerçek ama
-WhatsApp'sızsa mesaj sessizce düşer; cevap gelmeyince 3 gün kuralı Ahmet'i
-telefona yönlendirir.
+"WhatsApp'ta kayıtlı değil" ekranı ayrıca yakalanmıyor. Numara gerçek ama
+WhatsApp'sızsa mesaj düşebilir; cevap gelmeyince 3 gün kuralı Ahmet'i telefona
+yönlendirir.
 
 ## Ajanın işi (Chat 1/2 — token gerektiren kısım burada, insan onaylı)
 

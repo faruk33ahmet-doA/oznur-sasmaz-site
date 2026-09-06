@@ -106,6 +106,29 @@ tell application "System Events"
   key code 36
 end tell`);
 }
+// Gönderimi doğrula: son giden mesajda demo linki var mı?
+// "Allow JavaScript from Apple Events" açıksa gerçek kontrol; kapalıysa NOJS.
+function chromeVerify(demoUrl) {
+  const jsInner =
+    `(function(){var o=document.querySelectorAll('div.message-out');` +
+    `if(!o.length)return 'NONE';` +
+    `var last=(o[o.length-1].innerText||'').replace(/\\n/g,' ');` +
+    `return last.indexOf('${demoUrl}')>=0?'OK':('MISMATCH:'+last.slice(0,80));})()`;
+  try {
+    return osa(`
+tell application "Google Chrome"
+  set tt to missing value
+  repeat with w in windows
+    repeat with tb in tabs of w
+      if (URL of tb) contains "web.whatsapp.com" then set tt to tb
+    end repeat
+  end repeat
+  tell tt to execute javascript "${jsInner.replace(/"/g, '\\"')}"
+end tell`);
+  } catch {
+    return "NOJS";
+  }
+}
 
 const gonderildi = [];
 const atlandi = [];
@@ -150,11 +173,17 @@ async function main() {
     await sleep(12000);
     chromePressSend();
     await sleep(3500);
-    gonderildi.push({
+
+    const v = chromeVerify(L.demo_url);
+    const dogrulandi = v === "OK";
+    const rec = {
       isletme, telefon: tel, demo_url: L.demo_url,
       notion_page_id: L.notion_page_id || null,
       mesaj: msg, ts: new Date().toISOString(),
-    });
+      dogrulandi, dogrulama: v,
+    };
+    if (dogrulandi || v === "NOJS") gonderildi.push(rec);
+    else atlandi.push({ isletme, neden: `gönderim doğrulanamadı (${v})`, notion_page_id: L.notion_page_id || null });
     await sleep(5000);
   }
 }
@@ -180,7 +209,7 @@ main()
       ``,
       hata ? `> ${hata}\n` : "",
       `## Gönderildi: ${gonderildi.length}`,
-      gonderildi.length ? gonderildi.map((x) => `- ${x.isletme} · ${x.telefon} · ${x.demo_url}`).join("\n") : "- yok",
+      gonderildi.length ? gonderildi.map((x) => `- ${x.isletme} · ${x.telefon}${x.dogrulandi ? " ✓doğrulandı" : " ⚠doğrulanmadı — telefonu kontrol et"}`).join("\n") : "- yok",
       ``,
       `## Atlandı: ${atlandi.length}`,
       atlandi.length ? atlandi.map((x) => `- ${x.isletme} — ${x.neden}`).join("\n") : "- yok",
@@ -190,7 +219,9 @@ main()
       gonderildi.length && !DRY ? `_Notion güncellemesi bekliyor: gonderildi.json_` : "",
       ``,
     ].join("\n");
-    fs.mkdirSync(new URL("../durum/", import.meta.url), { recursive: true });
-    fs.writeFileSync(DURUM, md);
+    if (!DRY) {
+      fs.mkdirSync(new URL("../durum/", import.meta.url), { recursive: true });
+      fs.writeFileSync(DURUM, md);
+    }
     console.log("\n" + md);
   });
