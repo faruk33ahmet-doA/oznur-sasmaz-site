@@ -131,6 +131,14 @@ değişiklik birine yapılınca diğerine kopyalanır. Zincir **bozulmaz.**
 `site-yap` ilk ikisini yüklemekle **yükümlü**. Atlanırsa jenerik AI sitesi çıkar
 (bir kez oldu). İleride pazarlama becerileri de eklenecek (Chat 4).
 
+**SEO — `seo-sistemi` skill'i:**
+- **Demo aşaması (Chat 2):** demo `noindex` kalır ama **SEO temeli her sitede
+  kurulur** — `site-plani` araştırmada "hedef aramalar"ı çıkarır, `site-yap`
+  bunlara göre title/H1/metin + tam LocalBusiness schema yazar.
+- **Satış sonrası (Chat 3):** `noindex` kalkınca `seo-sistemi` **tam çalışır**
+  (anahtar kelime, sayfa içi, `sitemap.xml`, `robots.txt`, schema, blog).
+  Ölçüm Search Console ile, teslimden haftalar sonra.
+
 ---
 
 ## Notion CRM — tek gerçek kaynak

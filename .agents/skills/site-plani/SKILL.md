@@ -117,6 +117,13 @@ sektör / adres / telefon / Maps / Instagram / çalışma saatleri / puan + yoru
 ## Bilinmeyenler — sahada sorulacak
 - [ ] ...
 
+## Hedef aramalar (SEO tohumu)
+İşletmenin Google'da çıkmak isteyeceği 5–8 **yerel uzun kuyruk** arama:
+"<semt> <sektör>", "<semt> <sektör> <özellik>", "<semt>'te <hizmet>".
+Ör. "mudanya deniz manzaralı kahvaltı", "mudanya sahilde kahvaltı nerede".
+site-yap bunlara göre title/H1/metin yazar. Satış sonrası Chat 3 `seo-sistemi`
+ile tam araştırmaya çevirir. Demo `noindex` kalır.
+
 ## Satış açısı
 Faruk kapıdan girince söyleyeceği 2 cümle.
 ```
@@ -135,6 +142,10 @@ avoid-ai-design'ın `aesthetic-directions.md` listesinden **tek bir yön** öner
 gerekçelendir. Yanına: tip çifti, palet duruşu (hâkim/ikincil/vurgu — 60/30/10),
 düzen duruşu, tek hareket fikri, bir imza detay.
 Nihai kararı `site-yap` verir ama buradan çıkan öneri başlangıç noktasıdır.
+
+## Hedef aramalar
+`arastirma.md`'deki listeyi buraya taşı. Birincil aramayı işaretle —
+title ve H1 ona göre yazılacak.
 
 ## Bölümler
 Sırayla, hangileri kalacak hangisi silinecek. Silinecekse gerekçesi.

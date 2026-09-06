@@ -17,8 +17,11 @@ Tasarım ne olursa olsun bunlar olacak. Dönüşümün tamamı bunlarda.
 - [ ] **Mobilde sabit alt eylem çubuğu** (Ara / WhatsApp / Yol tarifi) — esnaf sitesinde
       dönüşümün büyük kısmı burada; tasarıma uydur ama kaldırma
 - [ ] Adres, açık yazılmış
-- [ ] `<title>`, `meta description`, `canonical`, OG etiketleri, `theme-color`
-- [ ] `schema.org` `application/ld+json` — doğru işletme tipi
+- [ ] `<title>` ≤ 60 krkt (hedef arama başta), `meta description` ≤ 155 krkt,
+      `canonical`, OG etiketleri, `theme-color`, `<html lang="tr">`
+- [ ] Tek `<h1>` (hedef aramayı doğal içerir), sonra `<h2>`/`<h3>` hiyerarşisi
+- [ ] `schema.org` `application/ld+json` — `LocalBusiness` alt tipi, tam
+      ad/adres/telefon/çalışma saatleri/`sameAs`
 - [ ] Teklif demosuysa: `<meta name="robots" content="noindex,nofollow">`
 - [ ] Her `<img>`'de gerçek `width`/`height` + anlamlı `alt`
 - [ ] `figure{margin:0}` — tarayıcı varsayılanı 1em 40px, tam kanama görselleri içeri iter

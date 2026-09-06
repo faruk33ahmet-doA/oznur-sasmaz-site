@@ -34,18 +34,27 @@ eksik bilgiler.
    gerçekle değiştir. `avoid-ai-design` + `frontend-design-pro` **yine ZORUNLU**,
    `arac/YONLER.md` tekrar yasağı geçerli.
 3. **`noindex` kaldır** — artık gerçek site, aranınca çıksın
-4. **Genişlet (gerekiyorsa):** iletişim formu, Google Business bağlantısı,
-   ek sayfa, blog
-5. **Kontrol:** `arac/kontrol.sh` + `arac/ss.mjs`
-6. **Canlı kontrol:** mobil · masaüstü · `tel:` · WhatsApp linki · yol tarifi ·
+4. **SEO'yu aç — `seo-sistemi` skill'ini çalıştır.** `noindex` kalktı, artık
+   Google'da sıralanmak istiyoruz:
+   - Adım 01: işletmenin sektörü + semti + hedef kitlesiyle anahtar kelime
+     araştırması (`arastirma.md`'deki "hedef aramalar" tohum) → `anahtar-kelimeler.md`
+   - Adım 04: sayfa içi SEO (title ≤60 anahtar başta · meta ≤155 · tek H1 ·
+     iç bağlantı · alt metinleri)
+   - Adım 05: teknik — `sitemap.xml` + `robots.txt` (artık `Allow`) + tam
+     `LocalBusiness` schema (ad, adres, telefon, çalışma saatleri, coğrafi konum)
+   - Google Business Profile bağlantısı / talebi
+   - İşletme blog isterse: Adım 02–03–06 (pillar+cluster, marka sesi, `/seo` komutu)
+5. **Genişlet (gerekiyorsa):** iletişim formu, ek sayfa
+6. **Kontrol:** `arac/kontrol.sh` + `arac/ss.mjs`
+7. **Canlı kontrol:** mobil · masaüstü · `tel:` · WhatsApp linki · yol tarifi ·
    sosyal medya linkleri · yanlış demo metni kalmadı mı
-7. **Domain bağla:** Vercel projesine custom domain, DNS doğrula, HTTPS bekle
-8. **Notion:** `Teslim / Sonraki Hizmet Notu` (domain durumu + sonraki fırsat:
+8. **Domain bağla:** Vercel projesine custom domain, DNS doğrula, HTTPS bekle
+9. **Notion:** `Teslim / Sonraki Hizmet Notu` (domain durumu + sonraki fırsat:
    bakım / SEO / Google Business / içerik). Ödeme tamamlandıysa
    `Ödeme Durumu = Tamamen Ödendi`.
-9. **`musteri/<slug>/README.md`** yaz: domain, teslim tarihi, ödeme durumu,
+10. **`musteri/<slug>/README.md`** yaz: domain, teslim tarihi, ödeme durumu,
    sonraki hizmet fikri
-10. **Referans ekle:** flyteq.space `references` tablosuna satır
+11. **Referans ekle:** flyteq.space `references` tablosuna satır
     (Supabase `flyteq-agency`) — canlı link + kısa açıklama. Site anında güncellenir.
 
 ## Klasör

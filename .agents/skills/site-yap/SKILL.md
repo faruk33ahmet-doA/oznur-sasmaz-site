@@ -40,6 +40,23 @@ tipografik ölçek, hareket fikri.
 
 `YONLER.md`'deki **yasaklılar listesindeki hiçbir hamle kullanılamaz.**
 
+## 2b. SEO temeli (demo `noindex` kalsa da kurulur)
+
+`plan.md`'deki **"hedef aramalar"** listesine göre:
+
+- **`<title>` ≤ 60 karakter**, hedef arama başta: "Mudanya deniz manzaralı
+  kahvaltı — İncir Cafe" gibi (marka adı değil, aramanın kendisi başta).
+- **`meta description` ≤ 155 karakter**, tıklamaya davet eden, semt + hizmet geçen.
+- **Tek `<h1>`**, o da hedef aramayı doğal içersin. Sonra `<h2>`/`<h3>` hiyerarşisi.
+- **`LocalBusiness` (veya alt tipi: `Restaurant`, `HairSalon`, `VeterinaryCare`…)
+  JSON-LD**: `name`, tam `address`, `telephone`, `openingHoursSpecification`
+  (7 gün), `geo` varsa, `image`, `sameAs` (Instagram). Uydurma alan yazma.
+- `<meta property="og:*">` + `canonical` + `theme-color` + `lang="tr"`.
+- Her `<img>` betimleyici `alt` (semt/konu geçsin, "resim1" değil).
+- Semantik yapı: `<header> <main> <section> <footer>`, landmark'lar.
+- **`<meta name="robots" content="noindex,nofollow">` KALIR** — teklif aşaması.
+  Chat 3 satış sonrası kaldırır ve `seo-sistemi` skill'iyle tam SEO yapar.
+
 ## 3. Kontrol et
 
 ```bash
