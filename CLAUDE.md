@@ -2,7 +2,7 @@
 
 Bu klasör, Ahmet Faruk Doğan'ın **FlyTeq** web ajansının tüm işini tek yerden
 yürüttüğü sistemdir. Ayrı bir admin panel yok — ajan (Claude / Codex) doğrudan
-araçları çalıştırır, GitHub'a push eder, Vercel'e deploy eder, Notion CRM'i
+araçları çalıştırır, GitHub'a push eder, Netlify/Vercel'e deploy eder, Notion CRM'i
 günceller. Bilgisayardan bağımsız çalışması gereken basit takip işleri
 `otomasyon/` altında GitHub Actions ile yürür.
 
@@ -121,7 +121,7 @@ değişiklik birine yapılınca diğerine kopyalanır. Zincir **bozulmaz.**
 |---|---|---|
 | `musteri-bul` | "müşteri bul", "bu haftanın listesi" | Bursa'da (bölge bölge) ~20 işletme araştır, puanla, en iyi 6'yı Notion'a yazar |
 | `site-plani` | "<slug> için plan", "şu işletmeyi araştır" | `arac/marka.mjs` çalıştırır, derin araştırma, tasarım yönü önerir, `arastirma.md` + `plan.md` |
-| `site-yap` | "<slug> sitesini yap", "demoyu kur" | **`avoid-ai-design` + `frontend-design-pro` yükler**, sıfırdan tasarlar, kontrol eder, onay sonrası GitHub repo + Vercel |
+| `site-yap` | "<slug> sitesini yap", "demoyu kur" | **`avoid-ai-design` + `frontend-design-pro` yükler**, sıfırdan tasarlar, kontrol eder, onay sonrası GitHub repo + Netlify/Vercel |
 
 **Built-in tasarım skill'leri (kurulum yok, `site-yap` her seferinde yükler):**
 - `avoid-ai-design` — AI "slop" kalıplarını tespit edip kırar. 12 estetik yön +
@@ -199,7 +199,9 @@ Müşteri demolarından **ayrı** — FlyTeq'in kendi tanıtım sitesi.
 - Domain: `flyteq.space` · Kaynak: `site/` (düz statik HTML/JS, build yok)
 - Veri: Supabase projesi `flyteq-agency` (`eaiezdvooeqabtrmcokl`), `references`
   tablosu. Satır düzenlemek siteyi anında günceller.
-- Barındırma: Netlify. **Müşteri demoları Vercel'e gider** — ikisi ayrı.
+- Barındırma: Netlify (ajans sitesi). **Müşteri demoları Netlify + Vercel** —
+  ikisi de kullanılır, ücretsiz kotayı tek platformda tüketmemek için
+  dönüşümlü; varsayılan Netlify.
 - Satılıp domainlenen her müşteri buraya referans olarak eklenir (Chat 3).
 
 ---

@@ -1,6 +1,6 @@
 ---
 name: site-yap
-description: Onaylanan plandan, o işletmeye özel seçilmiş bir tasarım yönüyle sıfırdan tek dosya HTML demo site tasarlar, AI-slop denetiminden geçirir, ekran görüntüsü alır ve onay sonrası ayrı GitHub reposu + Vercel projesi olarak yayınlar. Kullanıcı "<slug> sitesini yap", "demoyu kur", "siteyi yayınla" dediğinde kullanılır.
+description: Onaylanan plandan, o işletmeye özel seçilmiş bir tasarım yönüyle sıfırdan tek dosya HTML demo site tasarlar, AI-slop denetiminden geçirir, ekran görüntüsü alır ve onay sonrası ayrı GitHub reposu + Netlify ya da Vercel'e yayınlar. Kullanıcı "<slug> sitesini yap", "demoyu kur", "siteyi yayınla" dediğinde kullanılır.
 ---
 
 # Site Yap
@@ -105,6 +105,12 @@ hangi görsellerin stok olduğu, hangi bölümün neden silindiği, `arastirma.m
 
 ## 7. Yayın
 
+**Barındırma: Netlify + Vercel ikisi de kullanılır.** Amaç ücretsiz kotayı
+tek platformda tüketmemek. Varsayılan **Netlify**; Vercel'e sıra dönüşümlü
+gelir ya da Netlify kotası dolduğunda geçilir. Hangisi olursa olsun: koruma
+kapalı, `noindex` kalır, canlı URL curl ile doğrulanır.
+
+Önce repo (her iki yolda da işine yarar):
 ```bash
 cd "demo/<hafta>/<slug>/site"
 git init -b main && git add -A
@@ -114,21 +120,35 @@ Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>"
 gh repo create <slug>-demo --private --source . --push
 ```
 
-Vercel MCP:
+### A. Netlify (varsayılan — digest-deploy, `git` bağlamadan)
+```bash
+export NETLIFY_TOKEN=<flyteq-netlify-sites hafızasındaki token>
+# site oluştur:
+curl -s -X POST https://api.netlify.com/api/v1/sites -H "Authorization: Bearer $NETLIFY_TOKEN" \
+  -H "Content-Type: application/json" -d '{"name":"<slug>"}'
+# klasörü deploy et (helper: /tmp/netlify_deploy.py — yoksa hafızadaki tarife göre yeniden yaz):
+python3 /tmp/netlify_deploy.py <site_id> "demo/<hafta>/<slug>/site"
+```
+URL: `https://<slug>.netlify.app`. Zip-upload endpoint'ini KULLANMA (yanlış
+content-type). Digest-deploy (path + sha1) doğru olan.
+
+### B. Vercel (dönüşümlü / Netlify kotası dolunca) — Vercel MCP
 - `create_git_project` — repo `faruk33ahmet-doA/<slug>-demo`, framework yok (statik)
 - Yeni projeler **SSO korumalı açılıyor** — müşteri giriş duvarı görür.
   `update_project_deployment_protection` ile `ssoProtection:{enabled:false}` yap.
 - `get_deployment` ile READY ve `target: production` doğrula
-- Canlı URL'yi `curl` ile aç: 200 mü, içerik doğru mu, görseller geliyor mu,
-  harita gerçekten çalışıyor mu (headless'ta boş görünür, canlıda kontrol et)
 
-Notion: `Aşama = Demo Hazır`, `Demo Durumu = Hazır`, `Demo URL`, `Demo Tarihi`.
+Her iki yolda da canlı URL'yi `curl` ile aç: 200 mü, içerik doğru mu, görseller
+geliyor mu, harita çalışıyor mu (headless'ta boş görünür, canlıda kontrol et).
+
+Notion: `Aşama = Demo Hazır`, `Demo Durumu = Hazır`, `Demo URL` (hangi platforma
+gittiyse o), `Demo Tarihi`.
 
 ## 8. Teslim
 
 ```
 ✅ <İşletme adı>
-   Demo:  https://<slug>.vercel.app
+   Demo:  https://<slug>.netlify.app  (veya .vercel.app)
    Repo:  https://github.com/faruk33ahmet-doA/<slug>-demo
    Tel: <numara>  ·  Maps: <link>  ·  IG: <link>
 

@@ -159,7 +159,7 @@ mobil alt çubuk / schema / OG). Doldurulamayan bölüm: "SİL — gerekçe".
 | slot | dosya | ne gösteriyor |
 
 ## Yayın
-alan adı önerisi · vercel proje adı · repo adı
+alan adı önerisi · platform (Netlify varsayılan / Vercel) · proje adı · repo adı
 ```
 
 ## Metin kuralları

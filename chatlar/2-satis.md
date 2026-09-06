@@ -16,7 +16,7 @@ Sistemin en güçlü kozu: müşteriye "demo yapayım mı" denmez — demo zaten
 /site-yap <slug>       → SIFIRDAN tasarla (avoid-ai-design + frontend-design-pro
                           ZORUNLU), kontrol, ekran görüntüsü
       ↓  Ahmet son bakış, "tamam"
-                       → ayrı GitHub repo + Vercel prod link, Notion 'Demo Hazır'
+                       → ayrı GitHub repo + Netlify/Vercel prod link, Notion 'Demo Hazır'
       ↓  satış paketini Ahmet'e ver (aşağıda)
    otomasyon ilk WhatsApp mesajını atar (otomasyon/whatsapp-ilk-mesaj/)
       ↓  cevap yoksa sabah kontrolü 3 gün sonra "Telefonla Ara" der → Ahmet arar
@@ -94,7 +94,7 @@ her seferinde `avoid-ai-design` + `frontend-design-pro` yükler.
 İşletme:        <ad>
 Sektör / Bölge: <sektör> · <ilçe>
 Uygunluk Puanı: <n>/100 — <neden seçildi, tek cümle>
-Demo:           https://<slug>.netlify.app
+Demo:           https://<slug>.netlify.app  (veya .vercel.app)
 Telefon:        <numara>       WhatsApp: <wa.me linki>
 Kısa özet:      <2 cümle işletme özeti>
 

@@ -48,7 +48,8 @@ eksik bilgiler.
 6. **Kontrol:** `arac/kontrol.sh` + `arac/ss.mjs`
 7. **Canlı kontrol:** mobil · masaüstü · `tel:` · WhatsApp linki · yol tarifi ·
    sosyal medya linkleri · yanlış demo metni kalmadı mı
-8. **Domain bağla:** Vercel projesine custom domain, DNS doğrula, HTTPS bekle
+8. **Domain bağla:** demo hangi platformdaysa (Netlify/Vercel) o projeye custom
+   domain, DNS doğrula, HTTPS bekle
 9. **Notion:** `Teslim / Sonraki Hizmet Notu` (domain durumu + sonraki fırsat:
    bakım / SEO / Google Business / içerik). Ödeme tamamlandıysa
    `Ödeme Durumu = Tamamen Ödendi`.
