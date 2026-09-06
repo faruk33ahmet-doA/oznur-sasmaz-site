@@ -18,6 +18,7 @@ endüstriyel · maksimalist · sıcak minimal · monospace/terminal
 | 2026-09-06 | İncir Cafe (Mudanya) | kafe / kahvaltı | **nostaljik kıyı / organik** | Gloock + Hanken Grotesk | krem `#f4efe2` + soluk deniz mavisi-yeşili `#dcebe8`/`#a9cfcb`, zeytin `#6f7d52` + marmelat `#bd7a24` %10 | zeytin dalı SVG bölüm işareti (kendi reçel etiketlerinden) + Mudanya karo çini şeridi (SVG, düşük opaklık) bölüm ayıracı; hero fotoğrafında kemer köşe |
 | 2026-09-07 | Livane Pastanesi (Mudanya) | pastane / fırın | **art deco / klasik şekerci ambalajı** | DM Serif Display + Commissioner | sıcak krem `#f4e8d3`/`#faf3e6` + espresso `#2b1a12` + yanık altın `#b07d3a` %10 | yelpaze/güneş ışını deco cetvel (SVG, ince altın çizgiler yarım daireden) bölüm ayıracı, hero'daki bir kez kendini çiziyor; simetrik ortalanmış menü-kartı omurgası; tam genişlik dış cephe tabela şeridi |
 | 2026-09-07 | EDZ Barbershop / Semih Ediz (Mudanya) | berber / erkek kuaförü | **endüstriyel / atölye iş kartı** | Anton + IBM Plex Sans + IBM Plex Mono | kömür `#161615`/`#242826` + teal `#23423f` (kendi duvar rengi) + pirinç/amber `#c98a3c` %10 | hizmet listesi bir atölye iş fişi: `01`/`02` monospace numaralar, kesikli çizgi ayraçlar, "// randevuda netleşir" yorum satırı; asimetrik 2 kolon hero (metin + tam-bleed koltuk); hareket YOK |
+| 2026-09-07 | Boost Gym (Mudanya) | spor salonu / fitness | **brütalist / güç antrenmanı** | Big Shoulders Display + Public Sans | beton krem `#f2efe9`/`#e8e4dd` + siyah `#161514` + kırmızı `#d22e28` (kendi cephe bant rengi) %10 | kalın 8px kırmızı bant yapısal ayraç (kendi dış cephe bantları); dev kırmızı `01`/`02` bölüm numaraları; kırmızı slogan şeridinde işletmenin kendi duvar yazısı; **Merikafit karanlıktı diye bu AÇIK zeminli** |
 
 ## Marka rengi kuraldan önce gelir
 
@@ -50,7 +51,7 @@ Katalogdan çıkan, tekrar etmemesi gereken hamleler:
 
 ## Font havuzu (tekrar etmemek için)
 
-Kullanıldı: ~~Bodoni Moda~~, ~~Archivo~~, ~~Bricolage Grotesque~~, ~~Karla~~, ~~Familjen Grotesk~~, ~~Figtree~~, ~~Gloock~~, ~~Hanken Grotesk~~, ~~DM Serif Display~~, ~~Commissioner~~, ~~Anton~~, ~~IBM Plex Sans~~, ~~IBM Plex Mono~~.
+Kullanıldı: ~~Bodoni Moda~~, ~~Archivo~~, ~~Bricolage Grotesque~~, ~~Karla~~, ~~Familjen Grotesk~~, ~~Figtree~~, ~~Gloock~~, ~~Hanken Grotesk~~, ~~DM Serif Display~~, ~~Commissioner~~, ~~Anton~~, ~~IBM Plex Sans~~, ~~IBM Plex Mono~~, ~~Big Shoulders Display~~, ~~Public Sans~~.
 
 *(Public Sans + IBM Plex Mono ile bir Swiss denemesi yapıldı ama markanın moru göz ardı edildiği
 için çöpe gitti — tekrar kullanılabilirler.)*
