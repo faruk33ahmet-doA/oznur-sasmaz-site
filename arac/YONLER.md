@@ -15,6 +15,7 @@ endüstriyel · maksimalist · sıcak minimal · monospace/terminal
 | 2026-09-04 | Paris Kuaför Görükle | bayan kuaförü | **moda editoryali / lookbook** | Bodoni Moda + Archivo | kemik beyazı + vermilyon | dergi içindekiler sayfası olarak dev Bodoni rakamlar; kayan hizmet şeridi |
 | 2026-09-04 | ~~Görükle Çiçekçi~~ *(iptal — sitesi çalışıyormuş)* | çiçekçi | **maksimalist** | Bricolage Grotesque + Karla | koyu şişe yeşili + fuşya | üst üste binen kolaj; renk bloklu satırlar; yüklenişte kademeli yerleşme |
 | 2026-09-04 | Merikafit Pilates Görükle | pilates stüdyosu | **stüdyonun kendi ışığı** (karanlık oda + neon) | Familjen Grotesk + Figtree | mor gece `#150e24` + neon `#c9a6ff`, yeşil `#6f9a52` seyrek | işletmenin **kendi neon sloganı** başlık olarak, yüklenişte bir kez yanıyor |
+| 2026-09-06 | İncir Cafe (Mudanya) | kafe / kahvaltı | **nostaljik kıyı / organik** | Gloock + Hanken Grotesk | krem `#f4efe2` + soluk deniz mavisi-yeşili `#dcebe8`/`#a9cfcb`, zeytin `#6f7d52` + marmelat `#bd7a24` %10 | zeytin dalı SVG bölüm işareti (kendi reçel etiketlerinden) + Mudanya karo çini şeridi (SVG, düşük opaklık) bölüm ayıracı; hero fotoğrafında kemer köşe |
 
 ## Marka rengi kuraldan önce gelir
 
@@ -47,7 +48,7 @@ Katalogdan çıkan, tekrar etmemesi gereken hamleler:
 
 ## Font havuzu (tekrar etmemek için)
 
-Kullanıldı: ~~Bodoni Moda~~, ~~Archivo~~, ~~Bricolage Grotesque~~, ~~Karla~~, ~~Familjen Grotesk~~, ~~Figtree~~.
+Kullanıldı: ~~Bodoni Moda~~, ~~Archivo~~, ~~Bricolage Grotesque~~, ~~Karla~~, ~~Familjen Grotesk~~, ~~Figtree~~, ~~Gloock~~, ~~Hanken Grotesk~~.
 
 *(Public Sans + IBM Plex Mono ile bir Swiss denemesi yapıldı ama markanın moru göz ardı edildiği
 için çöpe gitti — tekrar kullanılabilirler.)*
