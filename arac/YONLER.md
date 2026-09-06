@@ -21,6 +21,7 @@ endüstriyel · maksimalist · sıcak minimal · monospace/terminal
 | 2026-09-07 | Boost Gym (Mudanya) | spor salonu / fitness | **brütalist / güç antrenmanı** | Big Shoulders Display + Public Sans | beton krem `#f2efe9`/`#e8e4dd` + siyah `#161514` + kırmızı `#d22e28` (kendi cephe bant rengi) %10 | kalın 8px kırmızı bant yapısal ayraç (kendi dış cephe bantları); dev kırmızı `01`/`02` bölüm numaraları; kırmızı slogan şeridinde işletmenin kendi duvar yazısı; **Merikafit karanlıktı diye bu AÇIK zeminli** |
 | 2026-09-07 | Deluxe Güzellik Salonu (Mudanya) | güzellik salonu / tırnak | **Swiss / tipografik 12-kolon ızgara** | Archivo (wdth 125) + Work Sans | sıcak kağıt `#fbf8f5`/`#f2ece6` + koyu kahve `#211c1a` + terracotta/gül `#b06b4e` %10 | görünür 12 kolon ızgara + ince saç çizgisi ayraçlar; hizmetler "Swiss dizin" (başlık solda, numaralı liste sağda); `01 —`/`02 —` numaralandırma; tam genişlik Mudanya sahili foto şeridi; **Paris Kuaför editoryaldi — bu katı Swiss ızgara, farklı** |
 | 2026-09-07 | Aslı Veteriner Muayenehanesi (Mudanya) | veteriner | **sıcak minimal / güven veren** | Newsreader + Manrope | sıcak krem `#faf6f1`/`#f1e9e0` + sıcak mürekkep `#39322e` + gül `#c97d8c` (kendi pembe rozetinden) + soluk mavi-gri `#7d94a6` (saatler bandı) | pati SVG logo (kendi logolarından sade); mavi tam genişlik "geç saate kadar açığız" saat bandı; 2×3 tek-çerçeve hizmet ızgarası (yüzen kart DEĞİL). **İncir organik-kıyıydı — bu yumuşak minimal, farklı.** İlk denemede H1'de serif-italik kelime vardı, T3 diye kaldırıldı |
+| 2026-09-07 | Duru Çiçek Evi (Mudanya) | çiçekçi | **lüks / koyu — çiçek mücevher gibi** | Rozha One + Source Sans 3 | sıcak siyah `#14120f`/`#1e1b17` + kemik `#ece4d8` + gül `#c98d95` + botanik yeşil `#3c5142` (gelin arabası bandı) | çiçekler near-black zeminde tek ışık gibi; asimetrik 2 kolon hero (Rozha One + tam-bleed gül); tam genişlik yeşil "gelin arabası süslemesi" bandı. **Merikafit mor-gece+neondu — bu sıcak-siyah + botanik yeşil, glow YOK, dramatik didone** |
 
 ## Marka rengi kuraldan önce gelir
 
@@ -53,7 +54,7 @@ Katalogdan çıkan, tekrar etmemesi gereken hamleler:
 
 ## Font havuzu (tekrar etmemek için)
 
-Kullanıldı: ~~Bodoni Moda~~, ~~Archivo~~, ~~Bricolage Grotesque~~, ~~Karla~~, ~~Familjen Grotesk~~, ~~Figtree~~, ~~Gloock~~, ~~Hanken Grotesk~~, ~~DM Serif Display~~, ~~Commissioner~~, ~~Anton~~, ~~IBM Plex Sans~~, ~~IBM Plex Mono~~, ~~Big Shoulders Display~~, ~~Public Sans~~, ~~Archivo (Expanded)~~, ~~Work Sans~~, ~~Newsreader~~, ~~Manrope~~.
+Kullanıldı: ~~Bodoni Moda~~, ~~Archivo~~, ~~Bricolage Grotesque~~, ~~Karla~~, ~~Familjen Grotesk~~, ~~Figtree~~, ~~Gloock~~, ~~Hanken Grotesk~~, ~~DM Serif Display~~, ~~Commissioner~~, ~~Anton~~, ~~IBM Plex Sans~~, ~~IBM Plex Mono~~, ~~Big Shoulders Display~~, ~~Public Sans~~, ~~Archivo (Expanded)~~, ~~Work Sans~~, ~~Newsreader~~, ~~Manrope~~, ~~Rozha One~~, ~~Source Sans 3~~.
 
 *(Public Sans + IBM Plex Mono ile bir Swiss denemesi yapıldı ama markanın moru göz ardı edildiği
 için çöpe gitti — tekrar kullanılabilirler.)*
