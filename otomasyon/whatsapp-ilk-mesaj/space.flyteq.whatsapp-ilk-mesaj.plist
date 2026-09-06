@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Kopyala: ~/Library/LaunchAgents/space.flyteq.whatsapp-ilk-mesaj.plist
-     Sonra: launchctl load ~/Library/LaunchAgents/space.flyteq.whatsapp-ilk-mesaj.plist
-     Her gün 10:15'te çalışır; gonder.mjs kendi içinde Pazar + saat penceresini eler. -->
+     Sonra:  launchctl load ~/Library/LaunchAgents/space.flyteq.whatsapp-ilk-mesaj.plist
+     Her PAZARTESİ 10:15'te çalışır. gonder.mjs kuyruk.json'u okur (Notion yok, token yok). -->
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -16,16 +16,9 @@
 
   <key>StartCalendarInterval</key>
   <dict>
+    <key>Weekday</key><integer>1</integer>
     <key>Hour</key><integer>10</integer>
     <key>Minute</key><integer>15</integer>
-  </dict>
-
-  <key>EnvironmentVariables</key>
-  <dict>
-    <!-- Notion token'ı ya buraya yaz ya da
-         otomasyon/whatsapp-ilk-mesaj/.notion-token dosyasına koy (gitignore'lu). -->
-    <key>NOTION_TOKEN</key>
-    <string>BURAYA_NOTION_TOKEN</string>
   </dict>
 
   <key>StandardOutPath</key>

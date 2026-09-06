@@ -19,6 +19,12 @@ ama **yayınlamaz.** Denetimi Chat 5 (Gelişim).
    (Demo Hazır değil — Ahmet onaylayınca Chat 2 `Demo Hazır` yapar)
 5. `git add -A && git commit && git push`
 6. Ahmet'e özet bildirim: "6 demo hazır, onay bekliyor" + ekran görüntüleri
+7. **Gönderim kuyruğu.** Ahmet onaylayıp demolar `Demo Hazır` olunca (Pazar
+   gecesi): Notion'dan uygun leadleri (`Demo Hazır` + `Demo URL` + `Telefon` +
+   `WhatsApp Gönderildi` boş) çek, en iyi 6'yı
+   `otomasyon/whatsapp-ilk-mesaj/kuyruk.json`'a yaz. Pazartesi 10:15 yerel
+   script gönderir. Pazartesi öğlen `gonderildi.json`'a bakıp Notion'u güncelle.
+   (Detay: `otomasyon/whatsapp-ilk-mesaj/README.md`.)
 
 ## Deploy YOK
 

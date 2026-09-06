@@ -1,89 +1,131 @@
 # WhatsApp ilk mesaj otomasyonu
 
-Demo `Demo Hazır` olan işletmelere **ilk WhatsApp mesajını otomatik gönderir.**
+Haftanın 6 demosuna **ilk WhatsApp mesajını otomatik gönderir.**
 
-## Yöntem: yerel zamanlanmış script (launchd)
+## Model (haftalık)
 
-Cowork / bulut değil. `gonder.mjs` düz Node kodu — Claude API kullanmaz. Mac
-açıkken ve Chrome'da WhatsApp Web oturumu açıkken çalışır. Cowork'ün istediği
-"cihaz onayı / device binding" derdi yok.
+```
+Pazar gecesi   → ajan 6 demoyu hazırlar + kuyruk.json'u yazar
+Pazartesi 10:15 → gonder.mjs kuyruğu okur, 6 mesajı Chrome/WhatsApp Web'den gönderir
+Pazartesi öğlen → ajan gonderildi.json'a bakıp Notion'u günceller
+3 gün cevap yok → notion-sabah-kontrol "Telefonla Ara" der → Ahmet arar
+```
 
-> WhatsApp Web canlı bir tarayıcı oturumu ister; hiçbir yöntem bilgisayar
-> tamamen kapalıyken çalışamaz. Bu script "Mac açık + Chrome açık" olduğu
-> sürece 10:15'te sessizce işini yapar.
+## Neden bu tasarım
 
-## Ne yapar
+- **Notion / token yok.** Script hiçbir yere bağlanmaz — sadece yerel
+  `kuyruk.json` okur, `gonderildi.json` yazar. Kuyruğu ajan (Notion erişimi
+  olan sohbet) hazırlar, sonucu ajan Notion'a işler.
+- **Cowork / bulut yok.** Cowork'ün "cihaz onayı" derdi yok. WhatsApp Web zaten
+  canlı tarayıcı istiyor — hiçbir yöntem Mac kapalıyken çalışamaz. Bu script
+  Mac açıkken Pazartesi 10:15'te sessizce işini yapar.
+- **Düz kod**, `notion-sabah-kontrol` gibi — Claude API kullanmaz.
 
-`Aşama = Demo Hazır` + `Demo URL` dolu + `Telefon` dolu + `WhatsApp Gönderildi`
-boş + Kazanıldı/Kaybedildi değil olan leadleri Notion'dan çeker →
-`Uygunluk Puanı` (yoksa `Öncelik`) sırasına göre **günde en fazla 6**'sına
-`mesaj-sablonu.md`'deki sabit metni gönderir → Notion'u `İlk Temas Yapıldı`
-yapar → `otomasyon/durum/whatsapp-son-gonderim.md` yazar ve commit'ler.
+## WhatsApp Business ile de çalışır (önerilir)
 
-Cevap gelmezse `notion-sabah-kontrol` 3 gün sonra `Telefonla Ara` der —
-aramayı Ahmet yapar. **Follow-up mesajı otomatik değil.**
+`web.whatsapp.com`, Business uygulamasıyla da bağlanıyor. Business hesabını
+web'e bağlarsan **script değişmez**, aynı çalışır. Kazanç: işletme profili
+(adres, saat, `flyteq.space`, açıklama) mesajın yanında görünür → daha
+güvenilir, hesap daha az riske girer. Business'a geçmek en temiz adım.
 
 ## Dosyalar
 
 | dosya | ne |
 |---|---|
-| `gonder.mjs` | asıl script |
-| `calistir.sh` | launchd bunu çağırır (script + durum commit) |
-| `space.flyteq.whatsapp-ilk-mesaj.plist` | launchd tanımı (şablon) |
+| `gonder.mjs` | gönderici — `kuyruk.json` → WhatsApp → `gonderildi.json` |
+| `calistir.sh` | launchd bunu çağırır (+ özet commit) |
+| `space.flyteq.whatsapp-ilk-mesaj.plist` | launchd tanımı (Pazartesi 10:15) |
+| `kuyruk-ornegi.json` | kuyruk şablonu — `kuyruk.json` olarak kopyalanır (gitignore) |
 | `mesaj-sablonu.md` | gönderilen metin + sektör cümleleri (kaynak) |
+
+## `kuyruk.json` biçimi
+
+```json
+{
+  "hafta": "2026-09-08",
+  "leadler": [
+    { "isletme": "İncir Cafe",
+      "telefon": "0224 544 91 95",
+      "demo_url": "https://incir-cafe-mudanya.netlify.app",
+      "sektor": "kafe / restoran",
+      "notion_page_id": "3d30..." }
+  ]
+}
+```
+`sektor` → mesajdaki değer cümlesini seçer. `mesaj` alanı doldurulursa şablon
+yerine o metin gider. `notion_page_id` sync için — zorunlu değil.
 
 ## Kurulum (bir kez)
 
-1. **Chrome + WhatsApp Web.** Chrome'da `web.whatsapp.com`'a giriş yapılı,
-   telefon eşleştirilmiş olsun. macOS'ta bu terminale/otomasyona
-   **Erişilebilirlik** izni ver (Sistem Ayarları → Gizlilik ve Güvenlik →
-   Erişilebilirlik) — tuş vuruşu göndermek için gerekli.
-2. **Notion token.** `otomasyon/whatsapp-ilk-mesaj/.notion-token` dosyası
-   oluştur, içine internal integration secret'ı yaz (gitignore'lu). Ya da
-   plist'teki `EnvironmentVariables` içine yaz. Integration `Ajans — Müşteri
-   Takibi` veritabanının Connections'ında ekli olmalı.
-3. **Test — kuru:**
-   ```bash
-   node otomasyon/whatsapp-ilk-mesaj/gonder.mjs --dry --skip-time
-   ```
-   Kimin, hangi numaraya, hangi metin. Notion'a yazmaz, mesaj göndermez.
-4. **Test — gerçek (1 kayıt):** Notion'da bir demoyu geçici `Demo Hazır` yap,
-   telefonu kendi test numaran olsun, sonra:
-   ```bash
-   node otomasyon/whatsapp-ilk-mesaj/gonder.mjs --skip-time
-   ```
-   Chrome'da açılışı izle, mesaj gitti mi bak, Notion güncellendi mi kontrol et.
-5. **Zamanla:**
-   ```bash
-   cp "otomasyon/whatsapp-ilk-mesaj/space.flyteq.whatsapp-ilk-mesaj.plist" \
-      ~/Library/LaunchAgents/
-   # plist içindeki BURAYA_NOTION_TOKEN'ı doldur (ya da .notion-token kullan, satırı sil)
-   launchctl load ~/Library/LaunchAgents/space.flyteq.whatsapp-ilk-mesaj.plist
-   ```
-   Artık her gün 10:15'te çalışır; script Pazar'ı ve 10:00–19:00 dışını kendi eler.
+### 1. Chrome + WhatsApp Web
+Chrome'da `web.whatsapp.com`'a giriş yapılı olsun (kişisel ya da Business
+hesabı). Telefon eşleştirilmiş kalsın.
+
+### 2. Erişilebilirlik izni
+Script tuş vuruşu gönderiyor (`osascript` → System Events). macOS bunu
+engelliyor. Sistem Ayarları → Gizlilik ve Güvenlik → **Erişilebilirlik**:
+- Testi VS Code terminalinden yapacaksan → **VS Code**'u aç (yaptın).
+- launchd otomatik çalışınca macOS `osascript` için bir kez daha sorabilir;
+  çıkan uyarıda izin ver ya da listede `osascript`'i aç.
+
+### 3. Kuru test (kimseye mesaj gitmez)
+```bash
+cd "/Users/ahmetfarukdogan/Desktop/flyteq son"
+cp otomasyon/whatsapp-ilk-mesaj/kuyruk-ornegi.json otomasyon/whatsapp-ilk-mesaj/kuyruk.json
+# kuyruk.json'a kendi test numaranı yaz
+node otomasyon/whatsapp-ilk-mesaj/gonder.mjs --dry --skip-time
+```
+Kimin, hangi numaraya, hangi metin — ekrana yazar.
+
+### 4. Gerçek test (1 kayıt, kendi numaran)
+`kuyruk.json`'da tek satır bırak, telefon = kendi test numaran. Sonra:
+```bash
+node otomasyon/whatsapp-ilk-mesaj/gonder.mjs --skip-time
+```
+Chrome'da açılışı izle → mesaj gitti mi bak → `gonderildi.json` +
+`otomasyon/durum/whatsapp-son-gonderim.md` doğru mu kontrol et.
+
+### 5. Zamanla (her Pazartesi 10:15)
+```bash
+cp "otomasyon/whatsapp-ilk-mesaj/space.flyteq.whatsapp-ilk-mesaj.plist" \
+   ~/Library/LaunchAgents/
+launchctl load ~/Library/LaunchAgents/space.flyteq.whatsapp-ilk-mesaj.plist
+```
+Test tetikleme (beklemeden): `launchctl start space.flyteq.whatsapp-ilk-mesaj`
+Loglar: `/tmp/flyteq-whatsapp-ilk-mesaj.log` ve `.err`
 
 ## Durdurma
-
 ```bash
 launchctl unload ~/Library/LaunchAgents/space.flyteq.whatsapp-ilk-mesaj.plist
 ```
 
 ## Değişmez kurallar
 
-- **Bir numaraya ömür boyu tek otomatik mesaj.** `WhatsApp Gönderildi` ✓ olana
-  bir daha dokunulmaz.
+- **Haftada bir parti, en fazla 6** (`gonder.mjs` içinde `CAP`).
+- **Sadece Pazartesi 10:00–19:00** (script kendi eler).
 - **Sadece `mesaj-sablonu.md`'deki metin.** Serbest üretim yok, fiyat/garanti yok.
-- **Günlük tavan 6** (`gonder.mjs` içinde `CAP`).
-- Aşama geçişi yalnız `Demo Hazır → İlk Temas Yapıldı`.
-- Geçersiz numara: gönderilmez, `Sonraki Aksiyon = Telefonla Ara` yazılır.
+- Bir numaraya tek mesaj — kuyruğu hazırlayan ajan tekrarı engeller
+  (Notion `WhatsApp Gönderildi` kontrolü).
+- Geçersiz numara: gönderilmez, `gonderildi.json` "atlandı"ya yazılır.
 
 ## Bilinen sınır
 
-Script "WhatsApp'ta kayıtlı değil" ekranını göremiyor (ekran okuma yok).
-Numara gerçek ama WhatsApp'sızsa mesaj sessizce düşer; cevap gelmeyince 3 gün
-kuralı devreye girer, Ahmet telefonla arar. Sorun olmaz ama farkında ol.
+Script "WhatsApp'ta kayıtlı değil" ekranını göremez. Numara gerçek ama
+WhatsApp'sızsa mesaj sessizce düşer; cevap gelmeyince 3 gün kuralı Ahmet'i
+telefona yönlendirir.
+
+## Ajanın işi (Chat 1/2 — token gerektiren kısım burada, insan onaylı)
+
+- **Pazar gecesi:** demolar `Demo Hazır` olunca, Notion'dan uygun leadleri
+  (`Demo Hazır` + `Demo URL` + `Telefon` + `WhatsApp Gönderildi` boş) çek,
+  en iyi 6'yı `kuyruk.json`'a yaz.
+- **Pazartesi:** `gonderildi.json`'u oku, gönderilen her lead için Notion:
+  `WhatsApp Gönderildi` ✓, `WhatsApp Gönderim Tarihi`, `Aşama = İlk Temas
+  Yapıldı`, `Yanıt Durumu = Cevap Bekleniyor`, `Son Temas Kanalı = WhatsApp`,
+  `WhatsApp Mesaj Metni`. Atlananlar için `Sonraki Aksiyon = Telefonla Ara`.
+  Sonra `gonderildi.json`'da `notion_guncellendi: true` yap.
 
 ## Test edildi
 
-2026-09-06/07 — İncir Cafe demosu test numarasına bu yolla gönderildi,
-gönderim mekanizması (Chrome aç → AppleScript boşluk-sil-Enter) çalışıyor.
+2026-09-06/07 — gönderim mekanizması (Chrome aç → AppleScript boşluk-sil-Enter)
+İncir Cafe demosuyla test numarasına doğrulandı.

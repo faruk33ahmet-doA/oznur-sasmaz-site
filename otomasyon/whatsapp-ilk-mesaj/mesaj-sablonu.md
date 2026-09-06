@@ -48,4 +48,8 @@ Uygun olduğunuzda göz atın; beğenirseniz detayları konuşalım.
 ## Değişiklik geçmişi
 
 - 2026-09-06 — ilk sürüm. İncir Cafe testinde `530 508 58 14` numarasına
-  gönderilerek doğrulandı.
+  gönderilerek doğrulandı. "ben Ahmet — FlyTeq" (em dash) → "FlyTeq web
+  ajansını yönetiyorum: flyteq.space"; değer cümlesi eklendi.
+- 2026-09-07 — mekanizma haftalığa çevrildi (Pzt 10:15), gönderici Notion'a
+  bağlanmıyor (`kuyruk.json` okur). Metin aynı. WhatsApp Business hesabı da
+  aynı şekilde çalışır (web.whatsapp.com), önerilir.

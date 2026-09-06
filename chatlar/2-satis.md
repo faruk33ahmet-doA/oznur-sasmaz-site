@@ -18,7 +18,7 @@ Sistemin en güçlü kozu: müşteriye "demo yapayım mı" denmez — demo zaten
       ↓  Ahmet son bakış, "tamam"
                        → ayrı GitHub repo + Netlify/Vercel prod link, Notion 'Demo Hazır'
       ↓  satış paketini Ahmet'e ver (aşağıda)
-   otomasyon ilk WhatsApp mesajını atar (otomasyon/whatsapp-ilk-mesaj/)
+   Pazar gecesi kuyruk.json → Pzt 10:15 otomasyon ilk WhatsApp mesajını atar
       ↓  cevap yoksa sabah kontrolü 3 gün sonra "Telefonla Ara" der → Ahmet arar
 ```
 
@@ -107,12 +107,12 @@ sektöre göre tek değer cümlesi). Ahmet'e ayrıca mesaj taslağı yazma.
 
 ## Satış akışı
 
-- **İlk WhatsApp mesajı otomatik.** `Aşama = Demo Hazır` + `Demo URL` dolu +
-  telefon var olunca `otomasyon/whatsapp-ilk-mesaj/` sabit şablonla mesajı
-  gönderir, Notion'u `İlk Temas Yapıldı` yapar. Temel avantaj mesajda:
-  "siz talep etmeden size özel demo hazırladık." Sen bu adımı beklersin,
-  demoyu `Demo Hazır` yapıp satış paketini Ahmet'e verirsin — gönderimi
-  otomasyon üstlenir.
+- **İlk WhatsApp mesajı otomatik (haftalık parti).** Demolar `Demo Hazır`
+  olunca (Pazar gecesi) uygun 6 leadi
+  `otomasyon/whatsapp-ilk-mesaj/kuyruk.json`'a yazarsın; Pazartesi 10:15 yerel
+  script sabit şablonla gönderir; Pazartesi öğlen `gonderildi.json`'a bakıp
+  Notion'u `İlk Temas Yapıldı` yaparsın. Mesajdaki avantaj: "siz talep etmeden
+  size özel demo hazırladık." Ahmet'e ayrı mesaj taslağı yazma.
 - Cevap yoksa **3 gün sonra telefon** (sabah kontrolü `Telefonla Ara` der).
   Aramadan önce Ahmet'e kısa bilgi ver:
   kimi arıyoruz · neden · demo linki · işletmenin güçlü noktası · görüşmenin

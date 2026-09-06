@@ -1,0 +1,13 @@
+{
+  "hafta": "2026-09-08",
+  "_not": "Pazar gecesi ajan hazırlar. gonder.mjs okur, Pazartesi 10:15 gönderir. Kopyala: kuyruk.json (gitignore). 'mesaj' alanı sadece o lead için özel metin gerekiyorsa doldurulur; boş bırak, şablon+sektör kullanılır.",
+  "leadler": [
+    {
+      "isletme": "Örnek Kafe",
+      "telefon": "0530 000 00 00",
+      "demo_url": "https://ornek-kafe.netlify.app",
+      "sektor": "kafe / restoran",
+      "notion_page_id": ""
+    }
+  ]
+}
